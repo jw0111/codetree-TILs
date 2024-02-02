@@ -68,9 +68,8 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
-            q.offer(new Node(x, y));
-            visit[x][y] = true;
-            ans++;
+            q.offer(new Node(x - 1, y - 1));
+            visit[x - 1][y - 1] = true;
             bfs();
         }
 
