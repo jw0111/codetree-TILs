@@ -62,14 +62,18 @@ public class Main {
             }
         }
 
+        int ans = 0;
+
         for(int i = 0; i <k; i++){
             st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
             q.offer(new Node(x, y));
+            visit[x][y] = true;
+            ans++;
             bfs();
         }
-        int ans = 0;
+
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
                 if(visit[i][j])
