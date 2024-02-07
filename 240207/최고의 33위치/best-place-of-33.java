@@ -7,8 +7,8 @@ public class Main {
 
     public static int getSum(int x, int y){
         int sum = 0;
-        for(int i = x; i < 3; i++){
-            for(int j = y; j < 3; j++){
+        for(int i = x; i < 3 + x; i++){
+            for(int j = y; j < 3 + y; j++){
                 if(i >= N || j >= N)
                     continue;
                 sum += board[i][j];
