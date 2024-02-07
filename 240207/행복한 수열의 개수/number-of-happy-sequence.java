@@ -23,17 +23,16 @@ public class Main {
 
         for(int i = 0; i < N; i++){
             int cnt = 1;
-
             for(int j = 1; j < N; j++){
                 if(board[i][j - 1] == board[i][j]){
                     cnt++;
-                    if(cnt == M){
-                        ans++;
-                        break;
-                    }
                 }
                 else
                     cnt = 1;
+                if(cnt == M){
+                    ans++;
+                    break;
+                }
             }
         }
 
@@ -42,13 +41,13 @@ public class Main {
             for(int j = 1; j < N; j++){
                 if(board[j - 1][i] == board[j][i]) {
                     cnt++;
-                    if(cnt == M){
-                        ans++;
-                        break;
-                    }
                 }
                 else
                     cnt = 1;
+                if(cnt == M){
+                    ans++;
+                    break;
+                }
             }
         }
 
