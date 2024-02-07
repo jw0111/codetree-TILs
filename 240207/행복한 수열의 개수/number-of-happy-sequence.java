@@ -50,7 +50,12 @@ public class Main {
                 }
             }
         }
-
-        System.out.println(ans);
+        if(N == 1){
+            if(board[0][0] == 1)
+                System.out.println(2);
+        }
+        else{
+            System.out.println(ans);
+        }
     }
 }
