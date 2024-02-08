@@ -83,17 +83,8 @@ public class Main {
                     int golds = bfs(cnt);
                     if(board[i][j] == 1)
                         golds++;
-
-                    // if(i == 3 && j == 3 && cnt == 2){
-                    //     for(int a = 0; a < n; a++){
-                    //         for(int b = 0; b < n; b++){
-                    //             System.out.print(String.format("%b ", visit[a][b]));
-                    //         }
-                    //         System.out.println();
-                    //     }
-                    // }
                   
-                    if(golds * m > cost && golds > ans){
+                    if(golds * m >= cost && golds > ans){
                         ans = golds;
                         //System.out.println(String.format("%d %d %d %d %d", i, j, cnt, golds, cost));
                     }
