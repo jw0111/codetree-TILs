@@ -25,8 +25,8 @@ class Node {
 
 public class Main {
     static int n, m;
-    static int[][] board = new int[21][21];
-    static boolean[][] visit = new boolean[21][21];
+    static int[][] board = new int[101][101];
+    static boolean[][] visit = new boolean[101][101];
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     static Queue<Node> q = new LinkedList<>();
@@ -73,7 +73,7 @@ public class Main {
             }
         }
 
-        for(int cnt = 1; cnt < n; cnt++){
+        for(int cnt = 1; cnt <= n; cnt++){
             int cost = cnt * cnt + (cnt + 1) * (cnt + 1);
             for(int i = 0; i < n; i++){
                 for(int j = 0; j < n; j++){
