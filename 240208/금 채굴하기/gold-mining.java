@@ -43,8 +43,8 @@ public class Main {
                 int ny = y + dy[i];
                 if(nx < 0 || nx >= n || ny < 0 || ny >= n)
                     continue;
-                if(cnt <= std && !visit[nx][ny]){
-                    sum++;
+                if(cnt < std && !visit[nx][ny]){
+                    sum += board[nx][ny];
                     visit[nx][ny] = true;
                     q.offer(new Node(nx, ny, cnt+1));
                 }
@@ -81,14 +81,25 @@ public class Main {
                     visit = new boolean[21][21];
                     visit[i][j] = true;
                     int golds = bfs(cnt);
-                    
-                    if(golds * m > cost && cnt > ans){
-                        ans = cnt;
-    
+                    if(board[i][j] == 1)
+                        golds++;
+
+                    // if(i == 3 && j == 3 && cnt == 2){
+                    //     for(int a = 0; a < n; a++){
+                    //         for(int b = 0; b < n; b++){
+                    //             System.out.print(String.format("%b ", visit[a][b]));
+                    //         }
+                    //         System.out.println();
+                    //     }
+                    // }
+                  
+                    if(golds * m > cost && golds > ans){
+                        ans = golds;
+                        //System.out.println(String.format("%d %d %d %d %d", i, j, cnt, golds, cost));
                     }
                 }
             }
         }
-        System.out.print(Math.abs(ans - 1));
+        System.out.print(ans);
     }
 }
