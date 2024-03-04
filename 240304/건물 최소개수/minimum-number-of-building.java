@@ -27,16 +27,19 @@ public class Main {
             if(y == 0){
                 heights.clear();
             }
-            else if(y < cur && heights.contains(y)){
-                
-            }
-            else if (y == cur){
+            else if(y <= cur && heights.contains(y)){
 
             }
-            else
+            else{
                 ans++;
+                heights.removeIf(n -> (n >= y));   
+                // for(int t = 0; t < heights.size(); t++)
+                // System.out.print(String.format("%d ", heights.get(t)));
+                // System.out.println();
+                // System.out.println(String.format("add number %d", y));
+            }
             heights.add(y);
-            //System.out.println(ans);
+           // System.out.println(ans);
         }
         System.out.println(ans);
     }
