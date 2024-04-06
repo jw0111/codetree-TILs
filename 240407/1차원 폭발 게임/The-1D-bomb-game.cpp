@@ -46,7 +46,7 @@ void gravity(){
     }
 
     memset(bomb, 0, sizeof(bomb));
-    for(int i = 0; i <= cnt; i++){
+    for(int i = 0; i <= idx; i++){
         bomb[i] = temp[i];
     }
 }
