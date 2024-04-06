@@ -24,13 +24,13 @@ int main() {
 
         int dir = dirMap.at(tmpDir);
         for(int time = 0; time < dist; time++){
-            if(x == 0 && y == 0 && ans != 0){
-                cout << ans;
-                return 0;
-            }
             x += dx[dir];
             y += dy[dir];
             ++ans;
+            if(x == 0 && y == 0){
+                cout << ans;
+                return 0;
+            }
         }
     }
     cout << -1;
