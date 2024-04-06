@@ -7,7 +7,7 @@ int n, m;
 bool checksquare(int i, int j, int l, int k){
     for(int a = i; a <= l; a++){
         for(int b = j; b <= k; b++){
-            if(board[a][b] < 0)
+            if(board[a][b] <= 0)
                 return false;
         }
     }
