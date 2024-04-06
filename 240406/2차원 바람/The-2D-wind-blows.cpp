@@ -8,12 +8,6 @@ int r1, c1, r2, c2;
 int dx[4] = {-1, 1, 0, 0};
 int dy[4] = {0, 0, -1, 1};
 
-void copy(){
-    for(int i = 1; i <= N; i++){
-        for(int j = 1; j <= M; j++)
-            backup[i][j] = board[i][j];
-    }
-}
 
 int main() {
     // 여기에 코드를 작성해주세요.
@@ -47,8 +41,7 @@ int main() {
         for(int i = r1; i < r2 - 1; i++){
             board[i][c1] = board[i + 1][c1];
         }
-        board[r1][c1] = tmp1;
-        copy();
+        board[r1][c1] = tmp1; // 여기까지 회전
 
         for(int i = r1; i <= r2; i++){
             for(int j = c1; j <= c2; j++){
@@ -66,9 +59,10 @@ int main() {
             }
         }
 
-        for(int i = 1; i <= N; i++){
-            for(int j = 1; j <= M; j++)
+        for(int i = r1; i <= r2; i++){
+            for(int j = c1; j <= c2; j++){
                 board[i][j] = backup[i][j];
+            }
         }
     }
 
@@ -78,7 +72,6 @@ int main() {
         }
         cout<< '\n';
     }
-
 
     return 0;
 }
