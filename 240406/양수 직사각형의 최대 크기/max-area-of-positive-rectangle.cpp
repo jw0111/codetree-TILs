@@ -15,7 +15,7 @@ bool checksquare(int i, int j, int l, int k){
 }
 
 int main() {
-    int ans = 0;
+    int ans = -1;
     // 여기에 코드를 작성해주세요.
     cin >> n >> m;
     for(int i = 0; i < n; i++){
