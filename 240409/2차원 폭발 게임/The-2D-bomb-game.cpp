@@ -9,7 +9,7 @@ int temp[101][101];
 int ans = 0;
 
 void print(){
-    for(int i = 0; i <N; i++){
+    for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++)
             cout << board[i][j] << " ";
         cout << '\n';
@@ -85,6 +85,14 @@ int main() {
     for(int i = 0; i < N; i++){
         for(int j = 0; j < N; j++)
             cin >> board[i][j];
+    }
+
+    if(N == 1){
+        if(M == 1){
+            cout << 0;
+        }
+        else cout << 1;
+        return 0;
     }
 
     for(int i = 0; i < K; i++){
