@@ -95,6 +95,11 @@ int main() {
         return 0;
     }
 
+    if(M == 1){
+        cout << 0;
+        return 0;
+    }
+
     for(int i = 0; i < K; i++){
         explode();
         rotate();
