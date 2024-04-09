@@ -14,6 +14,7 @@ void dropBlock(){
             }
         }
     }
+    rowIdx = n;
 }
 
 int main() {
@@ -27,7 +28,7 @@ int main() {
 
     dropBlock();
 
-    for(int j = k; j <= k + m; j++){
+    for(int j = k; j < k + m; j++){
         board[rowIdx][j] = 1;
     }
 
