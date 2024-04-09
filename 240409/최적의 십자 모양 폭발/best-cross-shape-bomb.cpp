@@ -6,9 +6,8 @@ int n;
 int board[51][51];
 int afterExplode[51][51];
 int temp[51][51];
-bool coupled[51][51];
-int dx[5] = {0, 0, 0, -1, 1};
-int dy[5] = {0, -1, 1, 0, 0};
+int dx[5] = {0, 1, 0, -1, 0};
+int dy[5] = {0, 0, 1, 0, -1};
 int ans = 0;
 
 void explode(int r, int c){
@@ -54,31 +53,41 @@ void gravity(){
 
 void findCouples(){
     int cnt = 0;
-    memset(coupled, false, sizeof(coupled));
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++){
-            for(int k = 0; k < 4; k++){
+            for(int k = 1; k <= 2; k++){
                 int nx = i + dx[k];
                 int ny = j + dy[k];
 
                 if(nx < 0 || nx >= n || ny < 0 || ny >= n)
                     continue;
                 
-                if(afterExplode[i][j] == afterExplode[nx][ny]){ // 2개가 같다면
-                    if(afterExplode[nx + dx[k]][ny + dy[k]] != afterExplode[i][j]){ // 3개 이상 겹치는 게 아니라면
-                        if(!coupled[i][j] || !coupled[nx][ny]){
-                            coupled[i][j] = true;
-                            coupled[nx][ny] = true;
-                            ++cnt;
-                            break;
-                        }
-                    }
+                if(afterExplode[i][j] == afterExplode[nx][ny] && afterExplode[i][j] != 0){ // 2개가 같다면
+                    //cout << i << ", " << j << " and " << nx << ", " << ny <<'\n';
+                    ++cnt;
                 }
             }
         }
     }
-   
+    // for(int i = 0; i < n; i++){
+    //     for(int j = 0; j < n; j++){
+    //         cout << afterExplode[i][j] << " ";
+    //     }
+    //     cout << '\n';
+    // }
+    // cout << '\n';
+
+    // for(int i = 0; i < n; i++){
+    //     for(int j = 0; j < n; j++){
+    //         cout << coupled[i][j] << " ";
+    //     }
+    //     cout << '\n';
+    // }
+    // cout << '\n';
+
     ans = max(ans, cnt);
+    //     cout << ans;
+    // cout << '\n';
 }
 
 int main() {
