@@ -7,7 +7,7 @@ int rowIdx = 1;
 
 void dropBlock(){
     for(int i = 1; i <= n; i++){
-        for(int j = k; j <= m; j++){
+        for(int j = k; j < k + m; j++){
             if(board[i][j]){
                 rowIdx = i - 1;
                 return;
