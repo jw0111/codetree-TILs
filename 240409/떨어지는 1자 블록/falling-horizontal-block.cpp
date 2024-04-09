@@ -3,7 +3,7 @@ using namespace std;
 
 int n, m, k;
 int board[101][101];
-int rowIdx = 0;
+int rowIdx = 1;
 
 void dropBlock(){
     for(int i = 1; i <= n; i++){
