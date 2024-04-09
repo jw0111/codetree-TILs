@@ -64,12 +64,14 @@ void findCouples(){
                 if(nx < 0 || nx >= n || ny < 0 || ny >= n)
                     continue;
                 
-                if(afterExplode[i][j] == afterExplode[nx][ny] && !coupled[i][j]){ // 짝지어지지 않고 2개가 같다면
+                if(afterExplode[i][j] == afterExplode[nx][ny]){ // 2개가 같다면
                     if(afterExplode[nx + dx[k]][ny + dy[k]] != afterExplode[i][j]){ // 3개 이상 겹치는 게 아니라면
-                        coupled[i][j] = true;
-                        coupled[nx][ny] = true;
-                        ++cnt;
-                        break;
+                        if(!coupled[i][j] || !coupled[nx][ny]){
+                            coupled[i][j] = true;
+                            coupled[nx][ny] = true;
+                            ++cnt;
+                            break;
+                        }
                     }
                 }
             }
