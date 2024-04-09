@@ -18,7 +18,7 @@ void escape(){
         int ny = curY + dy[dir];
         if(board[nx][ny] == '#'){ // 진행 방향에 벽이 있음
             int cnt = 0;
-            while(board[nx][ny] != '.'){
+            while(board[nx][ny] == '#'){
                 dir = (dir + 3) % 4; //반시계방향 회전
                 nx = curX + dx[dir];
                 ny = curY + dy[dir];
