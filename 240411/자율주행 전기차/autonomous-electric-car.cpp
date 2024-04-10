@@ -7,7 +7,7 @@
 #define MAX_N 21
 #define NO_EXISTS make_pair(-1, -1)
 #define DIR_NUM 4
-#define MAX_M 201
+#define MAX_M 401
 
 using namespace std;
 
