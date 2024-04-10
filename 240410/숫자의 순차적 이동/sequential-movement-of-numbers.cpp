@@ -8,7 +8,6 @@ int dx[8] = {-1, -1, -1, 0, 1, 1, 1, 0};
 int dy[8] = {-1, 0, 1, 1, 1, 0, -1, -1};
 
 int r, c;
-int dir = 0;
 
 void print(){
     for(int i = 0; i < n; i++){
@@ -18,7 +17,6 @@ void print(){
         cout << '\n';
     }
 }
-
 
 void swap(int x1, int y1, int x2, int y2){
     int temp = board[x1][y1];
@@ -40,19 +38,21 @@ void findIdx(int num){
 
 void move(){
     int nx, ny;
-    dir = 0;
+    int maxX, maxY;
+    int maxVal = 0;
     for(int i = 0; i < 8; i++){
         nx = r + dx[i];
         ny = c + dy[i];
         if(nx < 0 || nx >= n || ny < 0 || ny >= n)
             continue;
-        if(board[nx][ny] > board[r + dx[dir]][c + dy[dir]]){
-            dir = i;
+        if(board[nx][ny] > maxVal){
+            maxVal = board[nx][ny];
+            maxX = nx;
+            maxY = ny;
         }
     }
-    nx = r + dx[dir];
-    ny = c + dy[dir];
-    swap(r, c, nx, ny);
+    
+    swap(r, c, maxX, maxY);
 }
 
 int main() {
