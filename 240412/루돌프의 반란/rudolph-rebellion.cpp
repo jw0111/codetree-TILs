@@ -51,7 +51,7 @@ void Crash(pair<int, int> pos, bool isSanta, int dir){ // 산타가 충돌한거
     if(isSanta){
         dir = (dir + 4) % 8; // 방향 반대로 변경
         get<1>(board[pos.first][pos.second][0]) += D;
-        get<2>(board[pos.first][pos.second][0]) = 2;
+        get<2>(board[pos.first][pos.second][0]) = 1;
         nx = pos.first + dx[dir] * D;
         ny = pos.second + dy[dir] * D;
     }
@@ -115,7 +115,7 @@ void moveCow(){ // 루돌프 돌진
             dir = i; // 움직일 방향 결정
         }
     }
-    //cout << "dir : " << dir << '\n';
+ 
     nx = Rr + dx[dir]; 
     ny = Rc + dy[dir]; 
     if(board[nx][ny].size() > 0){
@@ -142,9 +142,6 @@ void moveSanta(){ // 산타 돌진
     for(int idx = 0; idx < santas.size(); idx++){
         int i = get<1>(santas[idx]);
         int j = get<2>(santas[idx]);
-        //cout << " i  j :" << i << " " << j << '\n';
-        //cout << "santa : " << get<0>(board[i][j][0]) << " " << get<1>(board[i][j][0]) << " " <<
-        //get<2>(board[i][j][0]) << '\n';
         if(get<2>(board[i][j][0]) > 0){ // 산타가 기절해있으면
             get<2>(board[i][j][0])--; // 기절 턴 하나 줄여주기
             continue;
@@ -166,17 +163,15 @@ void moveSanta(){ // 산타 돌진
         if(dir >= 0){ // 갈 방향이 있으면
             nx = i + dx[dir];
             ny = j + dy[dir];
-            //cout << "move : " << dir << " " << nx << " " << ny << "\n\n";
             board[nx][ny] = board[i][j];
             board[i][j].clear();
 
             if(nx == Rr && ny == Rc){ // 루돌프랑 충돌
-                //cout << "Santa get To cow : " << nx << " " << ny << '\n';
                 Crash({nx, ny}, true, dir);
             }
         }
-        // cout << "santa : " << get<0>(board[nx][ny][0]) << " " << get<1>(board[nx][ny][0]) << " " <<
-        // get<2>(board[nx][ny][0]) <<"nx, ny : " << nx << " " <<ny << '\n';
+        //cout << "santa : " << get<0>(board[nx][ny][0]) << " " << get<1>(board[nx][ny][0]) << " " <<
+        //get<2>(board[nx][ny][0]) <<"nx, ny : " << nx << " " <<ny << '\n';
     }
 }
 
