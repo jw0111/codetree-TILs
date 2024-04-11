@@ -38,12 +38,13 @@ void interaction(int x, int y, int dir){ // 산타끼리 상호작용
     int nx = x + dx[dir];
     int ny = y + dy[dir];
     if(notInRange(nx, ny)){ // 밖으로 나가면 탈락
-        outOfBoard(nx, ny);
+        outOfBoard(x, y);
         return;
     }
     if(board[nx][ny].size() > 0)
         interaction(nx, ny, dir);
     board[nx][ny] = board[x][y];
+    return;
 }
 
 void Crash(pair<int, int> pos, bool isSanta, int dir){ // 산타가 충돌한거면 true, 아니면 false
@@ -72,7 +73,9 @@ void Crash(pair<int, int> pos, bool isSanta, int dir){ // 산타가 충돌한거
         interaction(nx, ny, dir); // 산타 옮겨주고
     }
     board[nx][ny] = board[pos.first][pos.second];
+    //cout << "test test. : " << nx << " " << ny << " " << board[pos.first][pos.second].size() << '\n';
     board[pos.first][pos.second].clear(); // 옮겨주고 원래 자리 초기화
+
     //cout << "crashed : " <<pos.first << " " <<pos.second << " , "<< nx << " " << ny << '\n';
 }
 
@@ -159,7 +162,6 @@ void moveSanta(){ // 산타 돌진
                 bestDist = curDist;
             }
         }
-
         if(dir >= 0){ // 갈 방향이 있으면
             nx = i + dx[dir];
             ny = j + dy[dir];
@@ -170,9 +172,12 @@ void moveSanta(){ // 산타 돌진
                 Crash({nx, ny}, true, dir);
             }
         }
-        //cout << "santa : " << get<0>(board[nx][ny][0]) << " " << get<1>(board[nx][ny][0]) << " " <<
-        //get<2>(board[nx][ny][0]) <<"nx, ny : " << nx << " " <<ny << '\n';
-    }
+        else{
+            nx = i, ny = j;
+        }
+        // cout << "santa : " << get<0>(board[nx][ny][0]) << " " << get<1>(board[nx][ny][0]) << " " <<
+        // get<2>(board[nx][ny][0]) <<"nx, ny : " << nx << " " <<ny << '\n';
+   }
 }
 
 
@@ -207,7 +212,7 @@ int main() {
         moveSanta();
         // cout << "moveSanta\n";
         addScore();
-        // cout << "addScore\n";
+        //cout << "addScore\n";
         if(P == 0)
             break;
         //cout << "===========\n";
