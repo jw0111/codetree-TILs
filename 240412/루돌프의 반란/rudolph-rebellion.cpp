@@ -50,7 +50,6 @@ void Crash(pair<int, int> pos, bool isSanta, int dir){ // 산타가 충돌한거
     int nx, ny;
     if(isSanta){
         dir = (dir + 4) % 8; // 방향 반대로 변경
-        //cout << dir << '\n';
         get<1>(board[pos.first][pos.second][0]) += D;
         get<2>(board[pos.first][pos.second][0]) = 2;
         nx = pos.first + dx[dir] * D;
@@ -74,7 +73,7 @@ void Crash(pair<int, int> pos, bool isSanta, int dir){ // 산타가 충돌한거
     }
     board[nx][ny] = board[pos.first][pos.second];
     board[pos.first][pos.second].clear(); // 옮겨주고 원래 자리 초기화
-    //cout << "crashed : " << nx << " " << ny << '\n';
+    //cout << "crashed : " <<pos.first << " " <<pos.second << " , "<< nx << " " << ny << '\n';
 }
 
 bool needUpdateSanta(int dist, int r, int c){ // bestSantaPos 바꿔야하는지
@@ -143,15 +142,15 @@ void moveSanta(){ // 산타 돌진
     for(int idx = 0; idx < santas.size(); idx++){
         int i = get<1>(santas[idx]);
         int j = get<2>(santas[idx]);
-        // cout << " i  j :" << i << " " << j << '\n';
-        // cout << "santa : " << get<0>(board[i][j][0]) << " " << get<1>(board[i][j][0]) << " " <<
-        get<2>(board[i][j][0]) << '\n';
+        //cout << " i  j :" << i << " " << j << '\n';
+        //cout << "santa : " << get<0>(board[i][j][0]) << " " << get<1>(board[i][j][0]) << " " <<
+        //get<2>(board[i][j][0]) << '\n';
         if(get<2>(board[i][j][0]) > 0){ // 산타가 기절해있으면
             get<2>(board[i][j][0])--; // 기절 턴 하나 줄여주기
             continue;
         }
         int nx, ny;
-        int bestDist = 987654321, dir = -1;
+        int bestDist = calcDist(i, j, Rr, Rc), dir = -1;
         for(int d = 0; d < 8; d += 2){ // 상우하좌 이동
             nx = i + dx[d];
             ny = j + dy[d];
@@ -176,6 +175,8 @@ void moveSanta(){ // 산타 돌진
                 Crash({nx, ny}, true, dir);
             }
         }
+        // cout << "santa : " << get<0>(board[nx][ny][0]) << " " << get<1>(board[nx][ny][0]) << " " <<
+        // get<2>(board[nx][ny][0]) <<"nx, ny : " << nx << " " <<ny << '\n';
     }
 }
 
