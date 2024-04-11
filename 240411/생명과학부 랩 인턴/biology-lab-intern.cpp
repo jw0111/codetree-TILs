@@ -11,7 +11,7 @@ using namespace std;
 
 int n, m, k;
 int dx[4] = {0, 1, -1, 0}; // 3 - dir -> 방향전환
-int dy[4] = {-1, 0, 0, 1};
+int dy[4] = {-1, 0, 0, 1}; // 왼 외 아 오
 map<int, int> dirMap;
 
 vector<tuple<int, int, int, bool>> molds[MAX_NM][MAX_NM]; // 크기 방향 속도 확인여부
@@ -45,9 +45,11 @@ void moveAll(){
     for(int i = 1; i <= n; i++){
         for(int j = 1; j <= m; j++){
             for(int a = 0; a < molds[i][j].size(); a++){
+                //cout << "i, j : " << i << " " << j << '\n';
                 int size, dir, speed;
                 bool checked;
                 tie(size, dir, speed, checked) = molds[i][j][a];
+                //cout << "infos : " << size << " " << dir << " " << speed << " " << checked << '\n';
                 if(!checked){
                     tuple<int, int, int> next = nextPos(i, j, speed, dir);
                     int nx, ny, ndir;
@@ -78,7 +80,7 @@ void eat(){
         }
     }
     for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= n; j++){
+        for(int j = 1; j <= m; j++){
             molds[i][j] = temp[i][j];
         }
     }
@@ -87,6 +89,7 @@ void eat(){
 
 void watch(){
     for(int t = 1; t <= m; t++){
+        //cout << "curCol : " << t << '\n';
         for(int i = 1; i <= n; i++){
             if(molds[i][t].size() > 0){ // 곰팡이 발견
                 int size, dir, speed;
