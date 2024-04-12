@@ -67,31 +67,32 @@ void move() {
 }
 
 void findSquare(){
-    for(int s = 2; s <= N; s++){
-        for(int x1 = 1; x1 <= N - siz + 1; x1++){
-            for(int y1 = 1; y1 <= N - siz + 1; y1++){
+     for(int s = 2; s <= N; s++) {
+        for(int x1 = 1; x1 <= N - s + 1; x1++) {
+            for(int y1 = 1; y1 <= N - s + 1; y1++) {
                 int x2 = x1 + s - 1;
                 int y2 = y1 + s - 1;
 
-                if(!(x1 <= exits.first && exits.first <= x2 &&
-                 y1 <= exits.second && exits.second <= y2)) {
+                if(!(x1 <= exits.first && exits.first <= x2 && y1 <= exits.second && exits.second <= y2)) {
                     continue;
                 }
 
                 bool hasPlayer = false;
-                for(int l = 1; l <= M; l++){
-                    if(pos[l].first == exits.first && pos[l].second == exits.second){
-                        continue; // 이미 출구에 있으면 패스
-                    }
-                    if(pos[l].first >= x1 && pos[l].first <= x2
-                    && pos[l].second >= y1 && pos[l].second <= y2){
-                        hasPlayer = true; // 참가자 있으면 종료
+                for(int l = 1; l <= M; l++) {
+                    if(x1 <= pos[l].first && pos[l].first <= x2 
+                    && y1 <= pos[l].second && pos[l].second <= y2) {
+                        if(!(pos[l].first == exits.first 
+                        && pos[l].second == exits.second)) {
+                            hasPlayer = true;
+                        }
                     }
                 }
-                if(hasPlayer){
+
+                if(hasPlayer) {
                     sx = x1;
                     sy = y1;
                     siz = s;
+
                     return;
                 }
             }
