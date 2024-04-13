@@ -40,6 +40,7 @@ bool notInRange(int x, int y){
 
 void getGun(int x, int y){
     int num = playerBoard[x][y];
+    //cout << " get gun x, y : " << x << " " << y << '\n';
     int gunAttack = gun[num];
     int maxGun = 0;
     int idx = 0;
@@ -51,12 +52,12 @@ void getGun(int x, int y){
     }
     if(gunAttack < maxGun){
         gun[num] = maxGun;
-        board[x][y][idx] = 0;
-        board[x][y].push_back(gunAttack);
+        board[x][y][idx] = gunAttack;
     }
 }
 
 void lose(int num, int x, int y){
+    //cout << "lose gun : "<< gun[num]<< " x , y : " << x << " "<< y << '\n';
     board[x][y].push_back(gun[num]); // 총 내려놓기
     gun[num] = 0;
 
@@ -116,6 +117,7 @@ bool fight(int num1, int num2, int x, int y){
     }
     score[num2] += abs(attackGap);
     playerBoard[x][y] = num2;
+    getGun(x, y);
     return false; // 짐
 }
 
@@ -134,16 +136,11 @@ void move(int num){
     playerBoard[x][y] = 0;
     get<2>(playerPos[num]) = dir;
     if(playerBoard[nx][ny] != 0){ // 플레이어 있으면
-        int isVictory = fight(num, playerBoard[nx][ny], nx, ny);
+        bool isVictory = fight(num, playerBoard[nx][ny], nx, ny);
             if(isVictory){
                 playerBoard[nx][ny] = num;
-
                 playerPos[num] = make_tuple(nx, ny, dir); //위치 바꾸기
                 getGun(nx, ny);
-
-                if(board[nx][ny].size() != 0){ // 총이 있으면
-                    getGun(nx, ny);
-                }
             }    
     }
     else{
@@ -153,10 +150,6 @@ void move(int num){
             getGun(nx, ny);
         }
     }
-    // for(int i = 1; i <= m; i++){
-    //     cout << gun[i] << " ";
-    // }
-    // cout << '\n';
 }
 
 
