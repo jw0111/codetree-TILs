@@ -71,6 +71,8 @@ public class Main {
             }
         }
 
+        if(answer == 0) answer = -1;
+
         System.out.print(answer);
     }
 }
