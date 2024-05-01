@@ -15,8 +15,7 @@ public class Main {
         if(a + 1 == b && b + 1 == c){ // 이미 연속됨
             answer = 0;
         }
-        else if(a + 1 == b && b + 2 == c ||
-        a + 2 == b && b + 1 == c){
+        else if(a + 2 == b || b + 2 == c){
             answer = 1;
         }
         else answer = 2;
