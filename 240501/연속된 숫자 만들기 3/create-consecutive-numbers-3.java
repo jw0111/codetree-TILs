@@ -16,6 +16,7 @@ public class Main {
             answer = 0;
         else if(a + 2 == b && b + 2 == c)
             answer = 1;
+        else if((b - a) + (c - b) <= 5) answer = 2;
         else answer = 3;
 
         System.out.print(answer);
