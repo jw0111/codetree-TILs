@@ -14,10 +14,10 @@ public class Main {
 
         if(a + 1 == b && b + 1 == c)
             answer = 0;
-        else if(a + 2 == b && b + 2 == c)
-            answer = 1;
-        else if((b - a) <= 3 && (c - b) <= 3) answer = 2;
-        else answer = 3;
+        else {
+            answer = c - b - 1;
+            answer = answer > b - a - 1 ? answer : b - a - 1;
+        }
 
         System.out.print(answer);
     }
