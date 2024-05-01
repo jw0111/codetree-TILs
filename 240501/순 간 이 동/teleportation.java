@@ -15,7 +15,7 @@ public class Main {
         y = Integer.parseInt(st.nextToken());
 
         // 1. 텔레포트 사용 X
-        answer = B - A;
+        answer = Math.abs(B - A);
 
         // 2. x에서 y로 텔레포트
         answer = Math.min(answer, Math.abs(x - A) + Math.abs(y - B));
