@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Main {
     static int m1, d1, m2, d2;
-    static int[] month = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    static int[] month = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     static int day = 0;
     static HashMap<String, Integer> days = new HashMap<>();
     static int answer = 0;
@@ -31,7 +31,7 @@ public class Main {
         initDays();
         day = days.get(tempday);
         int curDay = 0;
-        int curMonth = month[m1 - 1];
+        int curMonth = month[m1];
         if(curDay == day) ++answer;
 
         while(true){
@@ -39,12 +39,14 @@ public class Main {
                 break;
             }
             if(d1 + 1 > curMonth){
-                m1 = (m1 + 1) % 12;
+                m1 = (m1 + 1) % 13;
                 d1 = 1;
+                curMonth = month[m1];
             }
             else ++d1;
             curDay = (curDay + 1) % 7;
             if(curDay == day) ++answer;
+            //System.out.println(d1);
         }
         System.out.print(answer);
 
